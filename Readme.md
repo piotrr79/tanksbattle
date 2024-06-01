@@ -20,7 +20,7 @@
   }
 }'
 ```
-### Random version to be run from command line with `python3 command.p random`
+### Random version to be run from command line with `python3 command.py random`
 
 ### Tests to be run with: python3 -m unittest test
 
