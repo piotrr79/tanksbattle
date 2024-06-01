@@ -22,7 +22,7 @@
 ```
 ### Random version to be run from command line with `python3 command.py random`
 
-### Tests to be run with: python3 -m unittest test
+### Tests to be run with: `python3 -m unittest test`
 
 ### Dictionaries to be passed to Battle class if calling from the code:
 ```  
