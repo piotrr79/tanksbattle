@@ -1,4 +1,4 @@
-## Python Tank Game. Three tanks meet each other and shoot. User (attacker) wins if tank stay safe on the battalfied.
+## Python Tank Game. Three tanks meet each other and shoot. User (attacker) wins if tank stayed safe on the battalfied.
 
 ### How to run:
 ##### Copy env.dist and rename it to .env
