@@ -1,10 +1,12 @@
 import sys
 import constant as const
-import configs
-sys.tracebacklimit = configs.TRACEBACK_LIMNIT
+from env import EnvReader
 
-""" Class TanksCalculations """
+sys.tracebacklimit = int(EnvReader.get_traceback_limit())
+
 class TanksCalculations:
+    """ Class TanksCalculations """
+
     def __init__(self, attacker: object, defender: object, sample_tank: object):
         self.tanks = []
         self.test = []
@@ -13,8 +15,9 @@ class TanksCalculations:
         self.sample_tank = sample_tank    
         
     def tanks_computing(self) -> None:
+        """ Tanks computing """
         if self.attacker.vulnerable(self.defender) is True:
-            raise Exception(const.VULNERABLE_TO_SELF)
+            raise ValueError(const.VULNERABLE_TO_SELF)
         self.attacker.swap_armor(self.defender)
 
         for i in range(5):
@@ -31,6 +34,7 @@ class TanksCalculations:
             index += 1
 
     def test_tank_safe(self) -> str:
+        """ Calculate clash """
         at_least_one_safe = False
 
         self.tanks_computing()

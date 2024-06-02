@@ -7,23 +7,23 @@ class ExecuteCommand():
     """ ExecuteCommand class """
 
     def __init__(self):
-        self
+        pass
 
-    def print_output() -> str:
+    def print_output(self) -> str:
         
         user_input = sys.argv
 
-        """ Validate and return data dict obj """
-        data = MyValidatorClass.validate_input(user_input)
+        # Validate and return data dict obj
+        data = MyValidatorClass.validate_input(self, user_input)
 
         if data == 'random':
-            response = Battle.play_random()
+            response = Battle.play_random(self)
         else:
-            response = Battle.play_input(data[const.ATTACKER], data[const.DEFENDER], data[const.SAMPLE_TANK])
+            response = Battle.play_input(self, data[const.ATTACKER], data[const.DEFENDER], data[const.SAMPLE_TANK])
 
         return json.dumps(response, indent=2)
 
 
 
-x = ExecuteCommand.print_output()
+x = ExecuteCommand.print_output(ExecuteCommand)
 print(x)

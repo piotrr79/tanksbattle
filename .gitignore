@@ -9,3 +9,4 @@ __pytest_cache__/
 **/.DS_Store
 *.log
 env
+.coverage

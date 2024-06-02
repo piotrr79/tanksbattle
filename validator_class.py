@@ -6,9 +6,9 @@ class MyValidatorClass:
     """ Validator class """
 
     def __init__(self):
-        self
+        pass
 
-    def validate_input(arguments: List[str]) -> str:
+    def validate_input(self, arguments: List[str]) -> str:
 
         """ Validate input
 
@@ -19,20 +19,20 @@ class MyValidatorClass:
                 NoReturn
         """
 
-        """ Test if input is not empty """
+        # Test if input is not empty
         if len(arguments) == 1:
-            raise Exception(const.INPUT_EMPTY)
+            raise ValueError(const.INPUT_EMPTY)
 
-        """ Get input from string """
+        # Get input from string
         data_string = arguments[1]
 
         if data_string == 'random':
             return data_string
         else:
-            """ Serialise input string to object """
+            # Serialise input string to object
             data = json.loads(data_string)
 
-            """ Test all required params """
+            # Test all required params
             try:
                 data[const.ATTACKER]
                 data[const.ATTACKER][const.ARMOUR]
