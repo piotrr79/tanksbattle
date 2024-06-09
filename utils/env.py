@@ -21,4 +21,17 @@ class EnvReader():
             value = config('TRACEBACK_LIMIT_ENV')
         
         return value
+    
+    def getDbUrl(self):
+        """ Get db url
+
+            Returns:
+                Db url string
+        """
+        if os.environ.get('DB_URL') is not None:   
+            self.dburl = os.environ['DB_URL']
+        else:
+            self.dburl = config('DB_URL')
+        
+        return self.dburl
 
