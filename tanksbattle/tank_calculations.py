@@ -1,6 +1,6 @@
 import sys
-import constant as const
-from env import EnvReader
+import utils.constant as const
+from utils.env import EnvReader
 
 sys.tracebacklimit = int(EnvReader.get_traceback_limit())
 

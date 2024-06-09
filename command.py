@@ -1,7 +1,7 @@
 import sys, json
-import constant as const
-from validator_class import MyValidatorClass
-from battle import Battle
+import utils.constant as const
+from utils.validator_class import MyValidatorClass
+from tanksbattle.battle import Battle
 
 class ExecuteCommand():
     """ ExecuteCommand class """

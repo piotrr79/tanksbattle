@@ -1,6 +1,6 @@
 import json
 from typing import List
-import constant as const
+import utils.constant as const
 
 class MyValidatorClass:
     """ Validator class """

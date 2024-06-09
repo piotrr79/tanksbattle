@@ -1,7 +1,7 @@
 import random
-import constant as const
-from tank import Tank
-from tank_calculations import TanksCalculations
+import utils.constant as const
+from tanksbattle.tank import Tank
+from tanksbattle.tank_calculations import TanksCalculations
 
 class Battle:
     """ Class Battle """

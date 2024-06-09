@@ -1,6 +1,11 @@
+import sys
+import os
+# Tell syspath where to import modules from other folders in root direcotry
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 import unittest
-import constant as const
-from battle import Battle
+import utils.constant as const
+from tanksbattle.battle import Battle
 
 class TestArmour(unittest.TestCase):
 
