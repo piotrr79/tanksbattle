@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from controller.game import GameApiRouting
+from .controller.game_routing import GameApiRouting
 
 app = FastAPI()
 
@@ -9,4 +9,4 @@ app.include_router(GameApiRouting.router)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello Game Applications!"}
+    return {"message": "Welcome in Tank Game Application!"}

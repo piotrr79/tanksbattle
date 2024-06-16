@@ -3,6 +3,22 @@
 ### How to run:
 ##### Copy env.dist and rename it to .env
 ##### Put value for TRACEBACK_LIMIT in .env (e.g. 0)
+
+
+##### Run from api:
+
+##### Run `fastapi dev main.py` from /api directory to start api server
+
+##### Go to selected url and follow instrutions:
+
+##### Urls: 
+##### Game intro: `http://127.0.0.1:8000/game/intro`
+##### Game rules: `http://127.0.0.1:8000/game/rules`
+##### Random game: `http://127.0.0.1:8000/game/random`
+##### Defined game: `http://127.0.0.1:8000/game/defined`
+
+##### Run from command:
+
 ##### Run `python3 command.py` with dictionary from below as command line argument
 
 ##### Arguments to be passed to command line:

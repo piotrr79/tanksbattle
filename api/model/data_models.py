@@ -2,31 +2,17 @@ import sys
 import os
 # Tell syspath where to import modules from other folders in root direcotry
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from utils.env import EnvReader
-
-from sqlalchemy import create_engine, Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+from armour_py.utils.env import EnvReader
+from .base_models import Users, Stats
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import update
 import datetime
-import uuid
-
-Base = declarative_base()
-
-class Stats(Base):
-    __tablename__ = 'stats'
-    uuid = Column('uuid', String(36), primary_key=True, default=uuid.uuid4)
-    player_name = Column('player_name', String(255))
-    player_ip = Column('player_ip', String(255))
-    player_score = Column('player_score', Integer(10,2))
-    number_of_games = Column('number_of_games', Integer(10,2))
-    created = Column('created', DateTime, default=datetime.datetime.utcnow)
-    last_updated = Column('last_updated', DateTime)
 
 class GameStatistics():
 
     def __init__(self): 
-        self
+        pass
     
     def save_result(self, name, ip, score):
         """ Save result

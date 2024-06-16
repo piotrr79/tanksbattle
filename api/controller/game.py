@@ -1,31 +1,27 @@
-from fastapi import APIRouter, Request
-#from pydantic import BaseModel
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from armour_py.api.model.data_models import GameStatistics
+from tanksbattle.battle import Battle
 
-class GameApiRouting():
-    """ Game Api Routing """
+class Game():
 
-    router = APIRouter()
     def __init__(self):
         pass
 
-    @router.get("/game/intro")
-    async def game_welcome(request: Request):
-        client_host = request.client.host
-        return {"message": "Game Intro", "client_host": client_host}
-
-    @router.get("/game/random")
-    async def game_random(request: Request):
-        client_host = request.client.host
-        return {"message": "Hello Player, Random Game", "client_host": client_host}
+    def play_random_game(self) -> str:
+        response = Battle.play_random(self)
+        # ToDo - put DB logic bnindings here
+        return response
     
-    @router.get("/game/defined")
-    async def game_defined(request: Request):
-        client_host = request.client.host
-        return {"message": "Hello Player, Defined Game", "client_host": client_host}
+    def play_defined_game(self) -> str:
+        # ToDo - compelete random game
+        return {"Hello Player, Defined Game will be available soon"}
     
-    @router.get("/game/rules")
-    async def game_rules(request: Request):
-        client_host = request.client.host
-        return {"message": "Game Rules", "client_host": client_host}
+    def play_game_welcome(self) -> str:
+        # ToDo - compelete random game
+        return {"Welcome in Tank game, play random battle with /game/random or define your own clash with /game/defined"}
     
-
+    def play_game_rules(self) -> str:
+        response = "Game rules will be available soon"
+        return  response

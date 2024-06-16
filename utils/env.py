@@ -1,6 +1,5 @@
 import sys
 import os
-from dotenv import load_dotenv
 # Tell syspath where to import modules from other folders in root direcotry
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from decouple import config
