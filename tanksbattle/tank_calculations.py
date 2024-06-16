@@ -10,6 +10,7 @@ class TanksCalculations:
     def __init__(self, attacker: object, defender: object, sample_tank: object):
         self.tanks = []
         self.test = []
+        self.vulnerable = []
         self.attacker = attacker
         self.defender = defender
         self.sample_tank = sample_tank    
@@ -17,7 +18,7 @@ class TanksCalculations:
     def tanks_computing(self) -> None:
         """ Tanks computing """
         if self.attacker.vulnerable(self.defender) is True:
-            raise ValueError(const.VULNERABLE_TO_SELF)
+            self.vulnerable.append(const.VULNERABLE_TO_SELF)
         self.attacker.swap_armor(self.defender)
 
         for i in range(5):
@@ -43,7 +44,11 @@ class TanksCalculations:
                 at_least_one_safe = True
         if at_least_one_safe:
             response = const.TANK_IS_SAFE
-        else:
+        elif not at_least_one_safe and not self.vulnerable:
             response = const.NO_TANK_IS_SAFE
+        elif self.vulnerable:
+            response = const.VULNERABLE_TO_SELF
+        else:
+            raise RuntimeError("Sorry, something went wrong")
         
         return response

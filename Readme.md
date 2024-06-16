@@ -1,25 +1,55 @@
 ## Python Tank Game. Three tanks meet each other and shoot. User (attacker) wins if tank stayed safe on the battalfied.
 
-### How to run:
+## Setup:
 ##### Copy env.dist and rename it to .env
 ##### Put value for TRACEBACK_LIMIT in .env (e.g. 0)
+##### Create SqLite database, for example in /api folder, called py_tank_game.db and execute following statement via any database UI like Valentina or Workbench:
+
+```
+CREATE TABLE IF NOT EXISTS `Users`(
+        `uuid` VARCHAR(36) NOT NULL,
+        `player_name` VARCHAR(255) NOT NULL,
+        `player_ip` VARCHAR(255) NOT NULL,
+        `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `last_updated` TIMESTAMP NOT NULL,
+        PRIMARY KEY (`uuid`)
+);
+
+CREATE TABLE IF NOT EXISTS `Stats`(
+        `uuid` VARCHAR(36) NOT NULL,
+        `user_id` VARCHAR(36) NOT NULL,
+        `player_score` INT NOT NULL,
+        `number_of_games` INT NOT NULL,
+        `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `last_updated` TIMESTAMP NOT NULL,
+        PRIMARY KEY (uuid),
+        CONSTRAINT FK_Users FOREIGN KEY (`user_id`)
+        REFERENCES Users(`uuid`)
+);
+```
 
 
-##### Run from api:
+### Run from api:
 
 ##### Run `fastapi dev main.py` from /api directory to start api server
 
 ##### Go to selected url and follow instrutions:
 
 ##### Urls: 
-##### Game intro: `http://127.0.0.1:8000/game/intro`
-##### Game rules: `http://127.0.0.1:8000/game/rules`
-##### Random game: `http://127.0.0.1:8000/game/random`
-##### Defined game: `http://127.0.0.1:8000/game/defined`
+```
+Game intro: http://127.0.0.1:8000/game/intro
+Game rules: http://127.0.0.1:8000/game/rules
+Random game: http://127.0.0.1:8000/game/random
+Defined game: http://127.0.0.1:8000/game/defined
+```
 
-##### Run from command:
+### Run from command:
 
-##### Run `python3 command.py` with dictionary from below as command line argument
+##### Random version to be run from command line with:
+ `python3 command.py random`
+
+##### Run defined version with dictionary passed as argument with:
+`python3 command.py`
 
 ##### Arguments to be passed to command line:
 ```  
@@ -41,12 +71,15 @@
   }
 }'
 ```
-##### Random version to be run from command line with `python3 command.py random`
 
-##### Tests to be run with: `python3 -m unittest test`
-##### Tests coverage to be generated with: `python3 -m coverage report`
 
-##### Dictionaries to be passed to Battle class if calling from the code:
+##### Tests to be run with: 
+`python3 -m unittest test`
+
+##### Tests coverage to be generated with: 
+`python3 -m coverage report`
+
+##### Dictionaries to be passed to Battle class if calling from the code for non random game:
 ```  
   "attacker" : {
     "armor" : 600,
