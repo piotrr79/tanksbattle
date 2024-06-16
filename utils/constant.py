@@ -14,3 +14,6 @@ INPUT_EMPTY = 'Please enter attacker, defender and sample tank parameters (armou
 VULNERABLE_TO_SELF = 'Vulnerable to self'
 TANK_IS_SAFE = 'A tank is safe'
 NO_TANK_IS_SAFE = 'No tank is safe'
+YOU_WON = 'You won'
+YOU_LOSE = 'You lose'
+YOU_DRAW_RUBBISH_TANK = 'You draw rubbish tank'

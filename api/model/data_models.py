@@ -7,7 +7,7 @@ from .base_models import Users, Stats
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import update
-import datetime
+import datetime, uuid
 
 class GameStatistics():
 
@@ -25,61 +25,39 @@ class GameStatistics():
                 Stats result
 
         """
-
-        print('PR Debug name', name)
-        print('PR Debug ip', ip)
-        print('PR Debug score', score)
-
-        print('PR Debug db_path', EnvReader.getDbUrl(self))
-
         engine = create_engine(EnvReader.getDbUrl(self), echo=True)
-
-        print('PR Debug engine', engine)
 
         Session = sessionmaker(bind=engine)
         session = Session()    
-        player =  session.query(Users).filter(Users.player_name == name).filter(Users.player_ip == ip).first()
-        session.commit()
-
-        print('PR Debug player', player)
+        player =  session.query(Users).filter(Users.player_name == name.username).filter(Users.player_ip == ip).first()
 
         result = ''
         # If not in db save and return player
-
-        print('PR Debug before if not player case')
-
         if not player:
-
-            print('PR Debug if not player case')
-
             updated = datetime.datetime.now()
-
-            print('PR Debug updated', updated)
-
-            user = Users(player_name = name, player_ip = ip, last_updated = updated)
-
-            print('PR Debug user', user)
-
+            user = Users(player_name = name.username, player_ip = ip, last_updated = updated)
             session.add(user)
             session.commit()
-            score = Stats(user_id = user, player_score = score, number_of_games = 1, last_updated = updated)
-
-            print('PR Debug score', score)
-
+            score = Stats(user_id = user.uuid, player_score = score, number_of_games = 1, last_updated = updated)
             session.add(score)
             session.commit()
-            result = score
+            player = score
         else:
-            stats =  session.query(Stats).filter(Stats.user_id == player).first()
+            stats =  session.query(Stats).filter(Stats.user_id == player.uuid).first()
+            if not stats:
+                score = Stats(user_id = user.uuid, player_score = score, number_of_games = 1, last_updated = updated)
+                session.add(score)
+                session.commit()
+            else:
+                user_score = stats.player_score + score
+                updated = datetime.datetime.now()
+                games = stats.number_of_games + 1
 
-            print('PR Debug stats', stats)
+                statement = update(Stats).where(stats.user_id==player.uuid).values(player_score = user_score, number_of_games = games, last_updated = updated).execution_options(synchronize_session="fetch")
+                session.execute(statement)
+                session.commit()
 
-            user_score = stats.player_score + score
-            updated = datetime.datetime.now()
-            games = player.number_of_games + 1
-            result = update(Stats).where(stats.user_id==player).values(player_score = user_score, number_of_games=games, last_updated=updated).execution_options(synchronize_session="fetch")
-            session.execute(result)
-            session.commit()
+        result =  session.query(Stats).filter(Stats.user_id==player.uuid).first()
         session.close()
 
         return result
