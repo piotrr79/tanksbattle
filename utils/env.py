@@ -7,6 +7,9 @@ from decouple import config
 class EnvReader():
     """ Get runtime params from env """
 
+    def __init__(self):
+        pass
+
     @staticmethod
     def get_traceback_limit():
         """ Get traceback limit 
@@ -21,16 +24,29 @@ class EnvReader():
         
         return value
     
-    def getDbUrl(self):
+    def get_db_url(self):
         """ Get db url
 
             Returns:
                 Db url string
         """
         if os.environ.get('DB_URL') is not None:   
-            self.dburl = os.environ['DB_URL']
+            dburl = os.environ['DB_URL']
         else:
-            self.dburl = config('DB_URL')
+            dburl = config('DB_URL')
         
-        return self.dburl
+        return dburl
+    
+    def get_token_server_endpoint(self):
+        """ Get token server endpoint
+
+            Returns:
+                Token server url string
+        """
+        if os.environ.get('TOKEN_SERVER') is not None:   
+            endpoint = os.environ['TOKEN_SERVER']
+        else:
+            endpoint = config('TOKEN_SERVER')
+        
+        return endpoint
 

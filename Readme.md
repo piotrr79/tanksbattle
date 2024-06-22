@@ -33,7 +33,11 @@ CREATE TABLE IF NOT EXISTS `Stats`(
 
 ##### Run `fastapi dev main.py` from /api directory to start api server
 
-##### Go to selected url and follow instrutions:
+##### Follow instructions from [oauth_readme](dev_oauth2_server/README.md) to create user and generate authorization token
+
+##### Run selected urls with culr or with Postman (collections attached to repository), for random game use authorization token in header: 
+
+```Authorization: Bearer your_token_obtained_in_ouath_dev_server```
 
 ##### Urls: 
 ```

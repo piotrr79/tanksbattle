@@ -93,29 +93,105 @@
 							"});",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ps2zim1jgsSm42Z6LG0GxzW6BCEUAc1K6ZHacCZbPX",
+						"type": "text"
 					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
 				},
 				"url": {
-					"raw": "{{base_url}}/info",
+					"raw": "http://127.0.0.1:8000/game/random",
+					"protocol": "http",
 					"host": [
-						"{{base_url}}"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "8000",
 					"path": [
-						"info"
+						"game",
+						"random"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Token Endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ps2zim1jgsSm42Z6LG0GxzW6BCEUAc1K6ZHacCZbPX",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Authorization",
+							"value": "Bearer ps2zim1jgsSm42Z6LG0GxzW6BCEUAc1K6ZHacCZbPX",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "application/x-www-form-urlencoded",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/me",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"me"
 					]
 				},
 				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."

@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Depends
+from fastapi.security import APIKeyHeader
+from typing_extensions import Annotated
 from .game import Game
 from .request_validation import RandomGame
 
@@ -6,6 +8,9 @@ class GameApiRouting(Request):
     """ Game Api Routing """
 
     router = APIRouter()
+    header_token = APIKeyHeader(name='Authorization')
+    TokenCheck = Annotated[str, Depends(header_token)]
+
     def __init__(self):
         pass
 
@@ -19,11 +24,16 @@ class GameApiRouting(Request):
         return {"message": response}
 
     @classmethod
+    @router.post("/game/demo")
+    async def play_demo_game(request: Request, user: RandomGame):
+        response = Game.play_demo_game(GameApiRouting.__pass_self)
+        return {"message": "Hello" + user, "result": response, "client_host": request.client.host}
+
+    @classmethod
     @router.post("/game/random")
-    async def game_random(request: Request, params: RandomGame):
-        client_host = request.client.host
-        response = Game.play_random_game(GameApiRouting.__pass_self, params, client_host)
-        return {"message": response, "client_host": client_host}
+    async def game_random(request: Request, token: TokenCheck):
+        response = Game.play_random_game(GameApiRouting.__pass_self, request)
+        return {"message": response, "client_host": request.client.host}
     
     @classmethod
     @router.get("/game/defined")

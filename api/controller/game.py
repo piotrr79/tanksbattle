@@ -1,5 +1,6 @@
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from fastapi import Request
 from armour_py.api.model.data_models import GameStatistics
 from tanksbattle.battle import Battle
 from .base_game import BaseGame
@@ -10,10 +11,15 @@ class Game(BaseGame):
     def __init__(self):
         pass
 
-    def play_random_game(self, username: str, ip: str) -> str:
+    def play_demo_game(self) -> str:
+        """ Demo random game  """
+        return Battle.play_random(self)
+
+    def play_random_game(self, request: Request) -> str:
         """ Random game  """
+        user_name = BaseGame.get_current_user(self, request.headers['authorization'])
         result = Battle.play_random(self)
-        response = Game.__stats_manipulation(self, username, ip, result)       
+        response = Game.__stats_manipulation(self, user_name, request.client.host, result)       
         return response
     
     def play_defined_game(self) -> str:
@@ -32,6 +38,8 @@ class Game(BaseGame):
     
     def __stats_manipulation(self, username: str, ip: str, game_result: str) -> str:
         
+        
+        print(username)
         score = 0
         if game_result == const.TANK_IS_SAFE:
             score = 1
@@ -44,6 +52,8 @@ class Game(BaseGame):
             response_string = const.YOU_DRAW_RUBBISH_TANK
 
         result = GameStatistics.save_result(self, username, ip, score)
+
+        print(result)
 
         response = {
             'number of games played': result.number_of_games,
