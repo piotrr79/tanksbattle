@@ -27,11 +27,11 @@ class TestArmour(unittest.TestCase):
 
     def test_tank_vulnerable_to_self(self):
         """ Test for vulnerable to self case """
-        attacker = {const.ARMOUR : 620, const.PENETRATION : 970, const.ARMOUR_TYPE : const.CHOBHAM}
-        defender = {const.ARMOUR : 600, const.PENETRATION : 1670, const.ARMOUR_TYPE : const.CHOBHAM}
+        attacker = {const.ARMOUR : 120, const.PENETRATION : 1670, const.ARMOUR_TYPE : const.CHOBHAM}
+        defender = {const.ARMOUR : 120, const.PENETRATION : 1670, const.ARMOUR_TYPE : const.CHOBHAM}
         sample_tank = {const.ARMOUR : 400, const.PENETRATION : 400, const.ARMOUR_TYPE : const.CERAMIC}
-        with self.assertRaises(Exception): 
-            Battle.play_input(self, attacker, defender, sample_tank)
+        result = Battle.play_input(self, attacker, defender, sample_tank)
+        self.assertEqual(result, const.VULNERABLE_TO_SELF)
 
     def test_tank_invalid_armour(self):
         """ Test for invalid armour case """

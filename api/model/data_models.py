@@ -31,8 +31,6 @@ class GameStatistics():
         session = Session()    
         player =  session.query(Users).filter(Users.player_name == name).filter(Users.player_ip == ip).first()
 
-        # ToDo - fix issues with inappropriate updates of played games 
-        # ToDo - test cases when new user is incoming, and when new user does not have stats yet
         result = ''
         # If not in db save and return player
         if not player:
@@ -47,15 +45,15 @@ class GameStatistics():
         else:
             stats =  session.query(Stats).filter(Stats.user_id == player.uuid).first()
             if not stats:
-                score = Stats(user_id = user.uuid, player_score = score, number_of_games = 1, last_updated = updated)
+                updated = datetime.datetime.now()
+                score = Stats(user_id = player.uuid, player_score = score, number_of_games = 1, last_updated = updated)
                 session.add(score)
                 session.commit()
             else:
                 user_score = stats.player_score + score
                 updated = datetime.datetime.now()
                 games = stats.number_of_games + 1
-                #ToDo where(stats.user_id==player.uuid) returns true instead opf record
-                statement = update(Stats).where(stats.user_id == player.uuid).values(player_score = user_score, number_of_games = games, last_updated = updated).execution_options(synchronize_session="fetch")
+                statement = update(Stats).where(Stats.uuid == stats.uuid).values(player_score = user_score, number_of_games = games, last_updated = updated).execution_options(synchronize_session="fetch")
                 session.execute(statement)
                 session.commit()
 

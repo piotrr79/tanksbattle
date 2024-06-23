@@ -42,7 +42,7 @@ class TanksCalculations:
         for t in self.test:
             if t:
                 at_least_one_safe = True
-        if at_least_one_safe:
+        if at_least_one_safe and not self.vulnerable:
             response = const.TANK_IS_SAFE
         elif not at_least_one_safe and not self.vulnerable:
             response = const.NO_TANK_IS_SAFE
