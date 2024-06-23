@@ -17,3 +17,4 @@ class BaseGame():
             return user_id + '/' + user_name
         except Exception as error:
             raise Exception('Cannot authorize user: ', error)
+        

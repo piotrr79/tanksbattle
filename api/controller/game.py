@@ -15,9 +15,9 @@ class Game(BaseGame):
         """ Demo random game  """
         return Battle.play_random(self)
 
-    def play_random_game(self, request: Request) -> str:
+    def play_random_game(self, request: Request, token: str) -> str:
         """ Random game  """
-        user_name = BaseGame.get_current_user(self, request.headers['authorization'])
+        user_name = BaseGame.get_current_user(self, token)
         result = Battle.play_random(self)
         response = Game.__stats_manipulation(self, user_name, request.client.host, result)       
         return response
@@ -37,9 +37,6 @@ class Game(BaseGame):
         return  response
     
     def __stats_manipulation(self, username: str, ip: str, game_result: str) -> str:
-        
-        
-        print(username)
         score = 0
         if game_result == const.TANK_IS_SAFE:
             score = 1
@@ -52,9 +49,6 @@ class Game(BaseGame):
             response_string = const.YOU_DRAW_RUBBISH_TANK
 
         result = GameStatistics.save_result(self, username, ip, score)
-
-        print(result)
-
         response = {
             'number of games played': result.number_of_games,
             'your total score': result.player_score,
