@@ -1,3 +1,6 @@
+DEV = 'dev'
+STAGING = 'staging'
+PROD = 'prod'
 CHOBHAM = 'chobham'
 COMPOSITE = 'composite'
 CERAMIC = 'ceramic'

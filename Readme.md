@@ -34,6 +34,10 @@ CREATE TABLE IF NOT EXISTS `Stats`(
 ##### Run `fastapi dev main.py` from /api directory to start api server
 
 ##### Follow instructions from /dev_oauth_server/README.md to create user and generate authorization token
+* Environment var in .env should be set to dev
+
+##### Alternatively download standalone OAuth server from https://github.com/piotrr79/def_oauth_serv.git and follow instructions
+* Environment var in .env should be set to staging
 
 ##### Run selected urls with culr or with Postman (collections attached to repository), for random game use authorization token in header: 
 

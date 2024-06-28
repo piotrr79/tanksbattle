@@ -37,6 +37,20 @@ class EnvReader():
         
         return dburl
     
+    def get_environment(self):
+        """ Get environment
+
+            Returns:
+                Environment string
+        """
+        if os.environ.get('ENVIRONMENT') is not None:   
+            my_env = os.environ['ENVIRONMENT']
+        else:
+            my_env = config('ENVIRONMENT')
+        
+        print('PR PRINT my_env: ', my_env)
+        return my_env
+    
     def get_token_server_endpoint(self):
         """ Get token server endpoint
 
