@@ -82,12 +82,16 @@ Defined game: http://127.0.0.1:8000/game/defined
 
 
 ##### Tests to be run with: 
-`cd test`
-`python3 -m unittest testarmour`
+`cd /`
+`pytest test/*`
 
 ##### Tests coverage to be generated with: 
-`cd test`
-`python3 -m coverage report`
+`cd /`
+`pytest test/* --cov`
+
+##### HTML t ests coverage to be generated with: 
+`cd /`
+`pytest test/* --cov --cov-report=html:coverage_report`
 
 ##### Dictionaries to be passed to Battle class if calling from the code for non random game:
 ```  

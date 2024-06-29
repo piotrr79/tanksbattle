@@ -1,13 +1,12 @@
 import sys
 import os
-# Tell syspath where to import modules from other folders in root direcotry
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from armour_py.utils.env import EnvReader
 from .base_models import Users, Stats
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import update
-import datetime, uuid
+import datetime
 
 class GameStatistics():
 

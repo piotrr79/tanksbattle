@@ -27,7 +27,7 @@ class GameApiRouting(Request):
     @router.post("/game/demo")
     async def play_demo_game(request: Request, user: RandomGame):
         response = Game.play_demo_game(GameApiRouting.__pass_self)
-        return {"message": "Hello" + user, "result": response, "client_host": request.client.host}
+        return {"message": "Hello " + user.username, "result": response, "client_host": request.client.host}
 
     @classmethod
     @router.post("/game/random")
