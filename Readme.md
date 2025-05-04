@@ -1,4 +1,7 @@
-## Python Tank Game. Three tanks meet each other and shoot. User (attacker) wins if tank stayed safe on the battlefield.
+## Python Tank Game.
+Three tanks meets on a battalfied and shoot each other. User (attacker) wins if its tank survive the clash.
+
+Game can be played from a command line or from API sevured with authorization. Instructions how to set up API server and OAuth service are listed below.
 
 ## Setup:
 ##### Copy env.dist and rename it to .env
