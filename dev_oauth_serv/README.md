@@ -1,4 +1,6 @@
-# OAuth 2.0 Provider, downloaded from `https://github.com/authlib/example-oauth2-server`
+# OAuth 2.0 Provider:
+
+Downloaded from `https://github.com/authlib/example-oauth2-server`
 
 For more details follow author's page. This code is attached to current repository only for dev / testing purposes. In any environment different to dev it should be replaced with regular OAuth service
 

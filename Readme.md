@@ -4,9 +4,11 @@ Three tanks meets on a battalfied and shoot each other. User (attacker) wins if 
 Game can be played from a command line or from API sevured with authorization. Instructions how to set up API server and OAuth service are listed below.
 
 ## Setup:
-##### Copy env.dist and rename it to .env
-##### Put value for TRACEBACK_LIMIT in .env (e.g. 0)
-##### Create SqLite database, for example in /api folder, called py_tank_game.db and execute following statement via any database UI like Valentina or Workbench:
+Copy env.dist and rename it to .env
+
+Put value for TRACEBACK_LIMIT in .env (e.g. 0)
+
+Create SqLite database, for example in /api folder, called py_tank_game.db and execute following statement via any database UI like Valentina or Workbench:
 
 ```
 CREATE TABLE IF NOT EXISTS `Users`(
@@ -34,15 +36,16 @@ CREATE TABLE IF NOT EXISTS `Stats`(
 
 ### Run from api:
 
-##### Run `fastapi dev main.py` from /api directory to start api server
+Run `fastapi dev main.py` from /api directory to start api server
 
-##### Follow instructions from /dev_oauth_server/README.md to create user and generate authorization token
+Follow instructions from /dev_oauth_server/README.md to create user and generate authorization token
 * Environment var in .env should be set to dev
 
-##### Alternatively download standalone OAuth server from https://github.com/piotrr79/def_oauth_serv.git and follow instructions
+
+Alternatively download standalone OAuth server from https://github.com/piotrr79/def_oauth_serv.git and follow instructions
 * Environment var in .env should be set to staging
 
-##### Run selected urls with culr or with Postman (collections attached to repository), for random game use authorization token in header: 
+Run selected urls with culr or with Postman (collections attached to repository), for random game use authorization token in header: 
 
 ```Authorization: Bearer your_token_obtained_in_ouath_dev_server```
 
@@ -56,13 +59,13 @@ Defined game: http://127.0.0.1:8000/game/defined
 
 ### Run from command:
 
-##### Random version to be run from command line with:
+Random version to be run from command line with:
  `python3 command.py random`
 
-##### Run defined version with dictionary passed as argument with:
+Run defined version with dictionary passed as argument with:
 `python3 command.py`
 
-##### Arguments to be passed to command line:
+Arguments to be passed to command line:
 ```  
 '{
   "attacker" : {
@@ -84,15 +87,20 @@ Defined game: http://127.0.0.1:8000/game/defined
 ```
 
 
-##### Tests to be run with: 
+### Tests:
+
+Tests to be run with: 
 `cd /`
 `pytest test/*`
 
-##### Tests coverage to be generated with: 
+Tests coverage to be generated with: 
 `cd /`
 `pytest test/* --cov`
 
-##### Dictionaries to be passed to Battle class if calling from the code for non random game:
+
+### Battle class:
+
+Dictionaries to be passed to Battle class if calling from the code for non random game:
 ```  
   "attacker" : {
     "armor" : 600,
